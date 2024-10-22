@@ -31,40 +31,62 @@
         </div>
     </nav>
 
+
+
+
     <div class="container">
         <div class="row vh-100 align-items-center justify-content-center">
             <div class="col-12">
-                <h1 class="text-center display-4 text-shadow">
-                    Database 1 - Michele savarse
+                <h1 class="text-center text-black display-4 text-shadow">
+                    Inserisci i dati dei giochi
                 </h1>
             </div>
         </div>
+
         <div class="row justify-content-center">
-            {{-- @dd($boardgames) --}}
-            @foreach ($boardgames as $boardgame)
+            <div class="col-12 col-md-6">
 
-            <div class="col-12 col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$boardgame->name}}</h5>
-                        <p class="card-text">{{$boardgame->type}}</p>
-                        <p class="card-text">{{$boardgame->players}}</p>
-                        <p class="card-text">{{$boardgame->instructor}}</p>
-
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                <form action="{{route('boardgame.library')}}" method="POST" class="rounded shadow p-5 bg-secondary-subtle text-center">
+                    @if (@session('success'))
+                    <div class="alert alert-success text-center">
+                        {{session('success')}}
                     </div>
-                </div>
-            </div>
 
-            @endforeach
+                    @endif
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome del gioco:</label>
+                        <input class="form-control" type="text" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Tipo di gioco:</label>
+                        <input class="form-control" type="text" name="type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="players" class="form-label">Numero di giocatori:</label>
+                        <input class="form-control" type="number" name="players">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="instructor" class="form-label">Istruttore:</label>
+                        <input class="form-control" type="text" name="instructor">
+                    </div>
+                    <div class="text-center ">
+                        <button class="btn btn-primary">
+                            Inserisci nel database
+                        </button>
+                    </div>
+                    {{-- <label for=""></label>
+                    <input type="text" name="">
+                    <button type="submit"></button> --}}
+                </form>
+            </div>
         </div>
+
     </div>
 
 
-    {{-- <header class="bg-black vh-100">
 
-    </header> --}}
 
 
 
